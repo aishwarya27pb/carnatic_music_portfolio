@@ -1,0 +1,548 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&family=Nunito+Sans:wght@300;400;600;700&display=swap');
+
+/* Modern CSS Reset & Variables with Darker Yellow */
+:root {
+    --primary-gold: #D9A600; /* Darker golden shade */
+    --bright-gold: #B8860B; /* Dark goldenrod */
+    --dark-bg: #0a0a0a;
+    --charcoal: #1a1a1a;
+    --text-light: #f0f0f0;
+    --text-gray: #b0b0b0;
+    --card-bg: rgba(26, 26, 26, 0.6);
+    --glass-bg: rgba(10, 10, 10, 0.7);
+    --hero-bg: linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.9)), 
+                url('https://images.unsplash.com/photo-1506152980175-88d54929a3b8?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+}
+
+body.light-mode {
+    --primary-gold: #B8860B; /* Dark goldenrod for light mode */
+    --bright-gold: #DAA520; /* Goldenrod for light mode */
+    --dark-bg: #f8f9fa;
+    --charcoal: #ffffff;
+    --text-light: #212529;
+    --text-gray: #495057;
+    --card-bg: rgba(245, 245, 245, 0.8);
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --hero-bg: linear-gradient(rgba(248, 249, 250, 0.85), rgba(248, 249, 250, 0.95)), 
+                url('https://images.unsplash.com/photo-1506152980175-88d54929a3b8?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: var(--dark-bg);
+    color: var(--text-light);
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Navigation - Glassmorphism */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 1000;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(184, 134, 11, 0.1); /* Darker yellow border */
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-circle {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--primary-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    color: var(--dark-bg);
+    font-size: 18px;
+    font-family: 'Nunito', sans-serif;
+}
+
+.artist-name {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    font-family: 'Nunito', sans-serif;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-menu a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 5px 0;
+    font-family: 'Nunito', sans-serif;
+}
+
+.nav-menu a:hover {
+    color: var(--primary-gold);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 28px;
+    height: 3px;
+    background: var(--primary-gold);
+    margin: 4px 0;
+    transition: 0.3s;
+    border-radius: 2px;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    background: var(--primary-gold);
+    color: var(--dark-bg);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(184, 134, 11, 0.3); /* Darker yellow shadow */
+    font-family: 'Nunito', sans-serif;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 6px 20px rgba(184, 134, 11, 0.4); /* Darker yellow shadow */
+}
+
+/* Hero Section with Dynamic Background */
+#hero {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: var(--hero-bg);
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 2;
+    animation: fadeInUp 0.8s ease;
+    padding: 0 20px;
+    max-width: 900px;
+}
+
+.hero-title {
+    font-size: clamp(4rem, 10vw, 8rem);
+    font-weight: 900;
+    letter-spacing: -1px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, var(--text-light) 0%, var(--primary-gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    font-family: 'Nunito', sans-serif;
+}
+
+.hero-subtitle {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    margin-top: 10px;
+    font-family: 'Nunito', sans-serif;
+}
+
+/* Legacy Portfolio Toggle Button */
+.hero-cta-button {
+    margin-top: 40px;
+    display: inline-block;
+    padding: 15px 40px;
+    background: var(--primary-gold);
+    color: var(--dark-bg);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(184, 134, 11, 0.4); /* Darker yellow shadow */
+    border: 2px solid transparent;
+    font-family: 'Nunito', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.hero-cta-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 30px rgba(184, 134, 11, 0.6); /* Darker yellow shadow */
+    background: var(--bright-gold);
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+    color: var(--primary-gold);
+    font-size: 24px;
+}
+
+/* Section Styles */
+section {
+    min-height: 100vh;
+    padding: 100px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.section-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--primary-gold);
+    margin-bottom: 15px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    font-family: 'Nunito', sans-serif;
+}
+
+.section-subtitle {
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    color: var(--text-gray);
+    margin-bottom: 50px;
+    font-weight: 300;
+    font-family: 'Nunito', sans-serif;
+}
+
+/* About Section */
+.about-section {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(184, 134, 11, 0.1); /* Darker yellow border */
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.about-card {
+    padding: 25px;
+    background: var(--glass-bg);
+    border-radius: 15px;
+    border-left: 4px solid var(--primary-gold);
+    transition: transform 0.3s ease;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+}
+
+.about-card h4 {
+    color: var(--primary-gold);
+    font-size: 18px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: 'Nunito', sans-serif;
+}
+
+.about-card p {
+    color: var(--text-gray);
+    font-size: 15px;
+    line-height: 1.6;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+/* Experience Section */
+.experience-section {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(184, 134, 11, 0.1); /* Darker yellow border */
+}
+
+.experience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.experience-card {
+    padding: 25px;
+    background: var(--glass-bg);
+    border-radius: 15px;
+    border-left: 4px solid var(--primary-gold);
+    transition: transform 0.3s ease;
+}
+
+.experience-card:hover {
+    transform: translateY(-5px);
+}
+
+.experience-card h4 {
+    color: var(--primary-gold);
+    font-size: 18px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: 'Nunito', sans-serif;
+}
+
+.experience-card p {
+    color: var(--text-gray);
+    font-size: 15px;
+    line-height: 1.6;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.about-text {
+    color: var(--text-gray);
+    line-height: 1.8;
+    font-size: 16px;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.about-text p {
+    margin-bottom: 20px;
+}
+
+/* Services Cards */
+.services-section {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(184, 134, 11, 0.1); /* Darker yellow border */
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.service-card {
+    background: var(--glass-bg);
+    padding: 35px 25px;
+    border-radius: 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(184, 134, 11, 0.1); /* Darker yellow border */
+}
+
+.service-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(184, 134, 11, 0.1); /* Darker yellow shadow */
+    border-color: rgba(184, 134, 11, 0.3); /* Darker yellow border */
+}
+
+.service-card h4 {
+    color: var(--primary-gold);
+    font-size: 22px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.service-card p {
+    color: var(--text-gray);
+    font-size: 15px;
+    line-height: 1.6;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+/* Contact Section */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.contact-card {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(184, 134, 11, 0.1); /* Darker yellow border */
+    text-align: center;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+}
+
+.contact-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--primary-gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dark-bg);
+    font-size: 24px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(184, 134, 11, 0.3); /* Darker yellow shadow */
+}
+
+.contact-info strong {
+    color: var(--text-light);
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.contact-info a {
+    color: var(--text-gray);
+    text-decoration: none;
+    font-size: 15px;
+    transition: color 0.3s ease;
+    font-family: 'Nunito Sans', sans-serif;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    display: block;
+}
+
+.contact-info a:hover {
+    color: var(--primary-gold);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    nav {
+        padding: 15px 20px;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background: var(--glass-bg);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        padding: 20px 0;
+        gap: 0;
+        backdrop-filter: blur(10px);
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-menu li {
+        padding: 15px 0;
+    }
+
+    .about-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .contact-info a {
+        font-size: 14px;
+        word-break: break-word;
+    }
+
+    .about-content {
+        padding: 30px 20px;
+    }
+
+    section {
+        padding: 80px 20px;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+    }
+}
