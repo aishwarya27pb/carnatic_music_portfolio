@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aishwarya Badiger - Artist Portfolio</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -39,9 +41,9 @@
             <h1 class="hero-title">Aishwarya Badiger</h1>
             <h2 class="hero-subtitle">Classical Vocalist & Performer</h2>
             <!-- Legacy Portfolio Toggle Button -->
-            <a href="https://aishwarya27pb.github.io/aishwaryapb-portfolio/" target="_blank" class="hero-cta-button">
-                Visit Legacy Portfolio
-            </a>
+            <button class="hero-cta-button" id="legacyBtn">
+                Carnatic Classical Singer
+            </button>
         </div>
         <div class="scroll-indicator">↓</div>
     </section>
@@ -193,6 +195,12 @@
             </div>
         </div>
     </section>
+
+    <!-- Legacy Portfolio Overlay -->
+    <div id="legacyOverlay" class="legacy-overlay">
+        <div class="legacy-close-btn" id="legacyCloseBtn">✕</div>
+        <iframe id="legacyIframe" class="legacy-iframe" src="https://aishwarya27pb.github.io/aishwaryapb-portfolio/" title="Legacy Portfolio"></iframe>
+    </div>
 
     <script src="script.js"></script>
 </body>
