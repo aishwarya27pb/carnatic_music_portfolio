@@ -37,34 +37,45 @@ window.addEventListener('scroll',()=>{
 /* Legacy Portfolio Iframe Overlay */
 const legacyBtn=document.getElementById('legacyBtn');
 const legacyOverlay=document.getElementById('legacyOverlay');
-const legacyCloseBtn=document.getElementById('legacyCloseBtn');
+const hireBtn=document.getElementById('hireBtn');
 
 if(legacyBtn){
     legacyBtn.addEventListener('click',()=>{
+        // show overlay using fold-in animation
         legacyOverlay.classList.add('active');
+        // small delay so the class addition registers before animation
         setTimeout(()=>{
-            legacyOverlay.classList.add('slide-in');
+            legacyOverlay.classList.remove('page-turn-out','fold-out','fold-in');
+            legacyOverlay.classList.add('fold-in');
         },10);
     });
 }
 
-if(legacyCloseBtn){
-    legacyCloseBtn.addEventListener('click',()=>{
-        legacyOverlay.classList.remove('slide-in');
-        legacyOverlay.classList.add('slide-out');
+if(hireBtn){
+    hireBtn.addEventListener('click',()=>{
+        // close overlay then show the hero section of the main portfolio
+        legacyOverlay.classList.remove('fold-in');
+        legacyOverlay.classList.add('fold-out');
         setTimeout(()=>{
-            legacyOverlay.classList.remove('active','slide-out');
-        },600);
+            legacyOverlay.classList.remove('active','fold-out');
+            const hero = document.querySelector('#hero');
+            if(hero){
+                hero.scrollIntoView({behavior:'smooth'});
+            } else {
+                // fallback: scroll to top
+                window.scrollTo({top:0,behavior:'smooth'});
+            }
+        },720);
     });
 }
 
 /* Close legacy overlay on Escape key */
 document.addEventListener('keydown',(e)=>{
     if(e.key==='Escape'&&legacyOverlay.classList.contains('active')){
-        legacyOverlay.classList.remove('slide-in');
-        legacyOverlay.classList.add('slide-out');
+        legacyOverlay.classList.remove('fold-in');
+        legacyOverlay.classList.add('fold-out');
         setTimeout(()=>{
-            legacyOverlay.classList.remove('active','slide-out');
-        },600);
+            legacyOverlay.classList.remove('active','fold-out');
+        },720);
     }
 });
